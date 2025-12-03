@@ -1,0 +1,29 @@
+// Created by prof. Mingu Kang @VVIP Lab in UCSD ECE department
+// Please do not spread this code without permission 
+module sram_32b_w2048 (CLK, D, Q, CEN, WEN, A);
+
+  parameter num = 2048;
+  parameter width = 32;
+  
+  
+  input  CLK;
+  input  WEN;
+  input  CEN;
+  input  [width-1:0] D;
+  input  [10:0] A;
+  output [width-1:0] Q;
+
+  reg [width-1:0] memory [num-1:0];
+  reg [10:0] add_q;
+
+  assign Q = (!CEN && WEN) ? memory[A] :0;
+
+  always @ (posedge CLK) begin
+
+   //if (!CEN && WEN) // read 
+      //add_q <= A;
+   if (!CEN && !WEN) // write
+      memory[A] <= D; 
+
+  end
+endmodule
