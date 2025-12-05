@@ -1,1 +1,1 @@
-
+- You can use the notebook to generate the required txt files for mapping the first quantconv layer which is 3x64 to the output stationary array.
