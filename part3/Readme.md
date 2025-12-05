@@ -1,2 +1,3 @@
 - You can use the notebook to generate the required txt files for mapping the first quantconv layer which is 3x64 to the output stationary array.
 - choose any variant of vggquant.
+- ensure that you choose test_type = 1, and mac_tile_version = 1 to be able to correctly run the testbench.
