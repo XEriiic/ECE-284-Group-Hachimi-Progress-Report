@@ -11,3 +11,6 @@ This is the Github repo for Group Hachimi
 | Alpha 2  |    Complete        | Deployment of 4bit-Quantized-ResNet18|   
 | Alpha 3  |   Partial Complete |       FIFO Optimization             |  
 | Alpha 4 | Complete | Ouput stationary NPU performs in-place accumulation |
+
+
+The code for Alpha 1 and 4 is in folder Part3
