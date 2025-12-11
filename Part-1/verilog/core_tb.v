@@ -97,7 +97,7 @@ assign inst_q[0]   = load_q;
 
 // Additional wire definition //
 
-reg l0_version = 1;
+reg l0_version = 0;
 
 wire ofifo_o_ready;
 assign ofifo_o_ready = ofifo_inst[0];
@@ -129,7 +129,7 @@ initial begin
   l0_wr    = 0;
   execute  = 0;
   load     = 0;
-  l0_version = 1;
+  l0_version = 0;
 
   $dumpfile("core_tb.vcd");
   $dumpvars(0,core_tb);
@@ -386,11 +386,11 @@ initial begin
     #0.5 clk = 1'b0; reset = 0; 
     #0.5 clk = 1'b1;  
 
-    for (j=0; j<len_kij+1; j=j+1) begin 
+    for (j=0; j<len_kij; j=j+1) begin 
 
         #0.5 clk = 1'b0;
          
-        if (j<len_kij) begin CEN_pmem = 0; WEN_pmem = 1; acc_scan_file = $fscanf(acc_file,"%11b", A_pmem);
+		if (j<len_kij+1) begin CEN_pmem = 0; WEN_pmem = 1; acc_scan_file = $fscanf(acc_file,"%11b", A_pmem);
         end else begin CEN_pmem = 1; WEN_pmem = 1; end
 
         if (j>0)  acc = 1;
@@ -442,6 +442,7 @@ end
 
 
 endmodule
+
 
 
 
