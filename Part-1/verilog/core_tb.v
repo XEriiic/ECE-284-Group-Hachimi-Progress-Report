@@ -215,7 +215,7 @@ initial begin
 
     end
 
-    #0.5 clk = 1'b0;  WEN_xmem = 1;  CEN_xmem = 1;
+    #0.5 clk = 1'b0;  WEN_xmem = 1;  CEN_xmem = 1; 
     #0.5 clk = 1'b1; 
     
     /////////////////////////////////////
@@ -281,7 +281,7 @@ initial begin
       #0.5 clk = 1'b1;  
     end
 
-    #0.5 clk = 1'b0; ; CEN_xmem = 1;  A_xmem = 0; 
+    #0.5 clk = 1'b0;  CEN_xmem = 1;  A_xmem = 0; 
     #0.5 clk = 1'b1;
     #0.5 clk = 1'b0; l0_wr = 0; 
     #0.5 clk = 1'b1; 
@@ -318,7 +318,7 @@ initial begin
     
     for (i=0; i<len_nij+1; i=i+1) begin
       #0.5 clk = 1'b0; ofifo_rd = 1; WEN_pmem = 0; CEN_pmem = 0; if(i>0) A_pmem = A_pmem + 1; 
-      $display(log_pmem, "write kij=%0d i=%0d A=%0d \n", kij, i, A_pmem); // For Memory Debug
+      //$display(log_pmem, "write kij=%0d i=%0d A=%0d \n", kij, i, A_pmem); // For Memory Debug
       #0.5 clk = 1'b1; 
     end 
 
@@ -336,7 +336,7 @@ initial begin
 
 
   ////////// Accumulation /////////
-  acc_file = $fopen("E:/Things_Of_Graduate/ECE_284/Project_p1.1_software/acc_address1.txt", "r");
+  acc_file = $fopen("E:/Things_Of_Graduate/ECE_284/Project_p1.1_software/acc_address.txt", "r");
   out_file = $fopen("E:/Things_Of_Graduate/ECE_284/Project_p1.1_software/VGG_data01/out.txt", "r");  
 
   // Following three lines are to remove the first three comment lines of the file
@@ -373,11 +373,11 @@ initial begin
     #0.5 clk = 1'b0; reset = 0; 
     #0.5 clk = 1'b1;  
 
-    for (j=0; j<len_kij; j=j+1) begin 
+    for (j=0; j<len_kij+1; j=j+1) begin 
 
         #0.5 clk = 1'b0;
          
-        if (j<len_kij+1) begin CEN_pmem = 0; WEN_pmem = 1; acc_scan_file = $fscanf(acc_file,"%11b", A_pmem);
+        if (j<len_kij) begin CEN_pmem = 0; WEN_pmem = 1; acc_scan_file = $fscanf(acc_file,"%11b", A_pmem);
         end else begin CEN_pmem = 1; WEN_pmem = 1; end
 
         if (j>0)  acc = 1;
