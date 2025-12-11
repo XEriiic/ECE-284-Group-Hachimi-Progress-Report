@@ -328,7 +328,7 @@ initial begin
     #0.5 clk = 1'b1;
     
     for (i=0; i<len_nij+1; i=i+1) begin
-      #0.5 clk = 1'b0; ofifo_rd = 1; WEN_pmem = 0; CEN_pmem = 0; if(i>0) A_pmem = A_pmem + 1; 
+		#0.5 clk = 1'b0; ofifo_rd = 1; WEN_pmem = 0; CEN_pmem = 0; if(i>0||A_pmem0) A_pmem = A_pmem + 1; 
       //$display(log_pmem, "write kij=%0d i=%0d A=%0d \n", kij, i, A_pmem); // For Memory Debug
       #0.5 clk = 1'b1; 
     end 
@@ -442,6 +442,7 @@ end
 
 
 endmodule
+
 
 
 
